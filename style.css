@@ -15,7 +15,8 @@ body {
     padding: 1rem;
 }
 .main {
-    margin: 2rem 10rem;
+    width: 90%;
+    margin: 2rem auto;
     padding: 4rem 0;
     display: flex;
     flex-direction: column;
@@ -41,6 +42,7 @@ body {
     background-color: #f4f4f4;
     margin-top: 1rem;
     padding: 2rem 0 2rem 2rem; 
+    word-wrap: break-word;
 }
 .form__button {
     padding: 1rem 1rem;
