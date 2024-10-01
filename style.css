@@ -17,10 +17,11 @@ body {
 .main {
     margin: 2rem 10rem;
     padding: 4rem 0;
-    padding-left: 4rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-content: center;
+    border-radius: 0.6rem;
 }
 .title {
     font-size: 3.2rem;
@@ -33,7 +34,7 @@ body {
     padding-right: 1rem;
 }
 .list {
-    width: 90%;
+    width: 85%;
     padding: 2rem 0 2rem 2rem;
     background-color: #f4f4f4;
     list-style: none;
@@ -44,14 +45,15 @@ body {
 .form__label-input input {
     padding: 1rem 1rem;
 }
-
 .toggle-theme-dark-white {
     background-color: #f4f4f4;
 }
 .toggle-theme-white {
     background-color: #ffffff;
 }
-
+.toggle-white-color {
+    color: #ffffff;
+}
 .toggle-theme-body {
     background-color: #333333;
 }
