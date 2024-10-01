@@ -35,9 +35,12 @@ body {
 }
 .list {
     width: 85%;
-    padding: 2rem 0 2rem 2rem;
-    background-color: #f4f4f4;
     list-style: none;
+}
+.list__item {
+    background-color: #f4f4f4;
+    margin-top: 1rem;
+    padding: 2rem 0 2rem 2rem; 
 }
 .form__button {
     padding: 1rem 1rem;
@@ -59,4 +62,7 @@ body {
 }
 .toggle-theme-main {
     background-color: #222222;
+}
+span:hover {
+    cursor: pointer;
 }
