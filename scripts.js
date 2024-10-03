@@ -14,10 +14,8 @@ function loadLocalStorageTask(){
         const taskElement = document.createElement('li');
         taskElement.innerHTML = task.content;
         taskElement.classList.add('list__item');
-        if (task.theme === 'dark') {
-            taskElement.classList.add('toggle-theme-body');
-            taskElement.classList.add('toggle-white-color');
-        }
+        taskElement.classList.remove('toggle-theme-body');
+        taskElement.classList.remove('toggle-white-color');
         taskElement.id = task.id;
         list.appendChild(taskElement);
     });
@@ -80,9 +78,10 @@ const deleteTask = (event) => {
         const newTask = prompt("Edita la tarea:", event.target.parentElement.firstChild.textContent)
         if (newTask !== null) {
             const taskElement = event.target.parentElement;
-            const newTaskContent = prompt("Edita la tarea:", taskElement.firstChild.textContent);
+            // const newTaskContent = prompt("Edita la tarea:", taskElement.firstChild.textContent);
+            const newTaskContent = `${newTask}<span>✖️</span><span>🖋️</span>`;
             if (newTaskContent !== null) {
-                taskElement.firstChild.textContent = newTaskContent;
+                taskElement.firstChild.textContent = newTask;
                 updateTaskInLocalStorage(taskElement.id, newTaskContent);
             }
         }
