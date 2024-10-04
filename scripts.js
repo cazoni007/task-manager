@@ -10,49 +10,33 @@ const form = document.querySelector('.main');
 document.addEventListener('DOMContentLoaded', loadLocalStorageTask);
 function loadLocalStorageTask(){
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const theme = localStorage.getItem("theme");
     tasks.forEach((task) => {
         const taskElement = document.createElement('li');
         taskElement.innerHTML = task.content;
         taskElement.classList.add('list__item');
-        taskElement.classList.remove('toggle-theme-body');
-        taskElement.classList.remove('toggle-white-color');
         taskElement.id = task.id;
         list.appendChild(taskElement);
     });
+    
+    if (theme === "dark") {
+        toggleDarkTheme();
+    } else {
+        toggleWhiteTheme();
+    }
 }
 
 const toggleTheme = () => {
     if (body.classList.contains('toggle-theme-dark-white')){
-        body.classList.remove('toggle-theme-dark-white');
-        body.classList.add('toggle-theme-body');
-        main.classList.remove('toggle-theme-white');
-        main.classList.add('toggle-theme-main');
-        title.classList.add('toggle-white-color');
-        
-        [...itemList].forEach(element => {
-            element.classList.add('toggle-theme-body');
-            element.classList.add('toggle-white-color');
-        });
-        // list.children.classList.add('toggle-theme-body');
-        // list.children.classList.add('toggle-white-color')
+        storeLastThemeInLocalStorage ("dark");
+        toggleDarkTheme();
     } else {
-        body.classList.remove('toggle-theme-body');
-        body.classList.add('toggle-theme-dark-white');
-        main.classList.remove('toggle-theme-main');
-        main.classList.add('toggle-theme-white');
-        title.classList.remove('toggle-white-color');
-        
-        [...itemList].forEach(element => {
-            element.classList.remove('toggle-theme-body');
-            element.classList.remove('toggle-white-color');
-        });
-        // list.children.classList.remove('toggle-theme-body');
-        // list.children.classList.remove('toggle-white-color');
+        storeLastThemeInLocalStorage ("white");
+        toggleWhiteTheme();
         }
     }
 let sumId = 1;
 const getTask = (event) => {
-    event.preventDefault();
     event.preventDefault();
     const taskContent = `${input.value}<span>✖️</span><span>🖋️</span>`;
     const task = document.createElement('li');
@@ -102,6 +86,10 @@ function storeTaskInLocalStorage (taskContent) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+function storeLastThemeInLocalStorage (lastTheme) {
+    localStorage.setItem("theme", lastTheme);
+}
+
 function removeTaskFromLocalStorage(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     tasks = tasks.filter(task => task.id !== parseInt(taskId));
@@ -117,4 +105,28 @@ function updateTaskInLocalStorage(taskId, newContent) {
         return task;
     });
     localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function toggleDarkTheme() {
+    body.classList.remove('toggle-theme-dark-white');
+    body.classList.add('toggle-theme-body');
+    main.classList.remove('toggle-theme-white');
+    main.classList.add('toggle-theme-main');
+    title.classList.add('toggle-white-color');
+    [...itemList].forEach(element => {
+        element.classList.add('toggle-theme-body');
+        element.classList.add('toggle-white-color');
+    });
+}
+
+function toggleWhiteTheme() {
+    body.classList.remove('toggle-theme-body');
+    body.classList.add('toggle-theme-dark-white');
+    main.classList.remove('toggle-theme-main');
+    main.classList.add('toggle-theme-white');
+    title.classList.remove('toggle-white-color');
+    [...itemList].forEach(element => {
+        element.classList.remove('toggle-theme-body');
+        element.classList.remove('toggle-white-color');
+    });
 }
